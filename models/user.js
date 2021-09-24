@@ -8,7 +8,6 @@ const userSchema = new moongoose.Schema(
         name: {
             type: String,
             required: true,
-            unique: true,
         },
 
         email: {
