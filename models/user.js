@@ -20,10 +20,6 @@ const userSchema = new moongoose.Schema(
             type: String,
             required: true,
         },
-
-        // avatar: {
-        //     type: String
-        // }
     },
     {
         timestamps: true,

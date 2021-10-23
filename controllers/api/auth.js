@@ -3,13 +3,22 @@
 const { validationResult } = require("express-validator");
 const User = require("../../models/user");
 
-module.exports.auth = (req, res) => {
-    res.send("<h1>Auth here</h1>");
+module.exports.main = (req, res) => {
+    return res.send("<h1>hey</h1>");
 };
 
-// create user action
+module.exports.test = (req, res) => {
+    console.log(req.body);
+    const user = User(req.body);
+    user.save();
+    res.send(req.body);
+};
+
+// create user
 module.exports.create_user = function (req, res) {
     const errors = validationResult(req);
+
+    // if errors
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -30,7 +39,7 @@ module.exports.create_user = function (req, res) {
             return;
         }
 
-        // if not found
+        // if e-mail not found
         if (!user) {
             User.create(req.body, function (err, user) {
                 if (err) {

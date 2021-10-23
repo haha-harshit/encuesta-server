@@ -3,8 +3,13 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
+// connect to db
 const db = require("./config/mongoose");
 
+// middleware-> json-body-parser
+app.use(express.json());
+
+// routing to API
 app.use("/api/auth", require("./routes/api/auth"));
 
 // app.get("/", (req, res) => {
