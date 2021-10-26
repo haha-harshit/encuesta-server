@@ -9,7 +9,7 @@ const authController = require("../../controllers/api/auth");
 router.get("/", authController.main);
 router.get("/test", authController.test);
 
-// creating user
+//ROUTE 1: CREATE_USER -noLoginRequired *** {POST}->"api/auth/create-user" ***
 router.post(
     "/create-user",
     [
@@ -21,6 +21,19 @@ router.post(
     ],
     authController.create_user
 );
+
+// ROUTE 2: LOGIN_USER -noLoginRequired *** {POST}->"api/auth/login-user" ***
+router.post(
+    "/login-user",
+    [
+        body("email", "Enter a valid E-Mail").isEmail(),
+        body("password", "Password cannot be blank").exists(),
+    ],
+    authController.login_user
+);
+
+// ROUTE 3: GET_LOGGED_IN_USER_DETAILS -LoginRequired *** {POST}->"api/auth/get-user" ***
+// router.post("/get-user", authController.get_user);
 
 // export route
 module.exports = router;
