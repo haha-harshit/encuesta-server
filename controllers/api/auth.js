@@ -7,6 +7,12 @@ const User = require("../../models/user");
 // import bcryptjs
 const bcrypt = require("bcryptjs");
 
+// import JWT
+var jwt = require("jsonwebtoken");
+
+// JWT_SECRET
+const JWT_SECRET = "Hahaisagoodboy@10";
+
 module.exports.main = (req, res) => {
     return res.send("<h1>hey</h1>");
 };
@@ -52,7 +58,16 @@ module.exports.create_user = async (req, res) => {
                     password: secPass,
                 });
                 console.log("Account created successfully!", user);
-                res.json(user);
+
+                const data = {
+                    user: {
+                        id: user.id,
+                    },
+                };
+                const authtoken = jwt.sign(data, JWT_SECRET);
+                // console.log(jwtData);
+                // console.log(data.user);
+                res.json({ authtoken });
             } catch (err) {
                 console.log("Error in creating account");
                 console.log(err);
