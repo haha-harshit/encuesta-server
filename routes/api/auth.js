@@ -2,15 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { body } = require("express-validator");
 
-// require middleware - fetchUser
+// require middleware - fetchUser to check logged in? {logged in user only}
 const fetchUser = require("../../middlewares/fetchUser");
 
 // make route for auth controller
 const authController = require("../../controllers/api/auth");
-
-// declaring route for auth to be acccessed
-router.get("/", authController.main);
-router.get("/test", authController.test);
 
 //ROUTE 1: CREATE_USER -noLoginRequired *** {POST}->"api/auth/create-user" ***
 router.post(

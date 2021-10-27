@@ -12,17 +12,6 @@ var jwt = require("jsonwebtoken");
 // JWT_SECRET_key
 const JWT_SECRET = "Hahaisagoodboy@10";
 
-module.exports.main = (req, res) => {
-    return res.send("<h1>hey</h1>");
-};
-
-module.exports.test = (req, res) => {
-    console.log(req.body);
-    const user = User(req.body);
-    user.save();
-    res.send(req.body);
-};
-
 // create user
 module.exports.create_user = async (req, res) => {
     const errors = validationResult(req);
