@@ -171,3 +171,15 @@ module.exports.login_user = async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 };
+
+// get user-details of logged_in user
+module.exports.get_user = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const user = await User.findById(userId).select("-password");
+        res.send(user);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+};

@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { body } = require("express-validator");
 
+// require middleware - fetchUser
+const fetchUser = require("../../middlewares/fetchUser");
+
 // make route for auth controller
 const authController = require("../../controllers/api/auth");
 
@@ -33,7 +36,7 @@ router.post(
 );
 
 // ROUTE 3: GET_LOGGED_IN_USER_DETAILS -LoginRequired *** {POST}->"api/auth/get-user" ***
-// router.post("/get-user", authController.get_user);
+router.post("/get-user", fetchUser, authController.get_user);
 
 // export route
 module.exports = router;
