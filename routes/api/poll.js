@@ -6,12 +6,12 @@ const fetchUser = require("../../middlewares/fetchUser");
 
 const pollController = require("../../controllers/api/poll");
 
-// ROUTE 1: DISPLAY ALL POLLS
-router.get("/polls", fetchUser, pollController.polls);
+// ROUTE 1: DISPLAY ALL POLLS  *** {GET}->"api/poll/all-polls" ***
+router.get("/all-polls", fetchUser, pollController.polls);
 
-// ROUTE 2: DISPLAY ALL CREATED POLLS
-router.get("/createdPolls", fetchUser, pollController.createdPolls);
+// ROUTE 2: DISPLAY ALL CREATED POLLS  *** {GET}->"api/poll/created-polls" ***
+router.get("/created-polls", fetchUser, pollController.createdPolls);
 
-// ROUTE 3: DISPLAY ALL PARTICIPATED POLLS
-router.get("/participatedPolls", fetchUser, pollController.participatedPolls);
+// ROUTE 3: DISPLAY ALL PARTICIPATED POLLS  *** {GET}->"api/poll/participated-polls" ***
+router.get("/participated-polls", fetchUser, pollController.participatedPolls);
 module.exports = router;

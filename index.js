@@ -11,6 +11,7 @@ app.use(express.json());
 
 // routing to API
 app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/poll", require("./routes/api/poll"));
 
 // app.get("/", (req, res) => {
 //     return res.send("Home page");
