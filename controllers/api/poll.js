@@ -1,6 +1,8 @@
 // display all polls page --> then divided in 2 sections: created and participated
 module.exports.polls = async (req, res) => {
-    return res.json([]);
+    return res.json({
+        polls: "no poll available",
+    });
 };
 
 // display created polls
