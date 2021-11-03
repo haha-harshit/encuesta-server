@@ -4,9 +4,12 @@ const port = 8000;
 
 // connect to db
 const db = require("./config/mongoose");
+const User = require("./models/user");
 
 // middleware-> json-body-parser
 app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
 
 // set route
 app.use("/", require("./routes/index"));
@@ -20,6 +23,7 @@ app.use("/api/poll", require("./routes/api/poll"));
 // });
 
 app.set("view engine", "ejs");
+app.set("views", "./views");
 
 app.listen(port, () => {
     console.log("Server is up and running");
