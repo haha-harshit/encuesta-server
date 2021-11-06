@@ -13,9 +13,14 @@ var jwt = require("jsonwebtoken");
 const JWT_SECRET = "Hahaisagoodboy@10";
 
 module.exports.main = function (req, res) {
-    return res.render("home", {
+    return res.render("main", {
         title: "ENCUESTA-HOME",
     });
+};
+
+// signup page
+module.exports.sign_up = async (req, res) => {
+    return res.render("sign_up");
 };
 
 // create user
@@ -33,7 +38,7 @@ module.exports.create_user = async (req, res) => {
 
         // for user's email successfully found in database---->> ALREADY TAKEN!
         if (user) {
-            console.log("E-mail already registered!");
+            console.log("E-mail already registered!", user);
             // TO DO: Add return path
             return;
         }

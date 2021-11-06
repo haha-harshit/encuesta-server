@@ -10,6 +10,8 @@ const mainController = require("../controllers/index");
 
 router.get("/", mainController.main);
 
+router.get("/sign-up", mainController.sign_up);
+
 //ROUTE 1: CREATE_USER -noLoginRequired *** {POST}->"create-user" ***
 router.post(
     "/create-user",
