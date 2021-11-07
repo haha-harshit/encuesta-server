@@ -9,6 +9,9 @@ const optionSchema = new moongoose.Schema(
             type: String,
             required: true,
         },
+        count: {
+            type: Number,
+        },
     },
     {
         timestamps: true,
