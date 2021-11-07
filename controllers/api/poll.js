@@ -1,8 +1,12 @@
+const Poll = require("../../models/poll");
+
 // display all polls page --> then divided in 2 sections: created and participated
 module.exports.polls = async (req, res) => {
-    return res.json({
-        polls: "no poll available",
-    });
+    const polls = await Poll.find({ poll: req.user.id });
+    res.json(polls);
+    // return res.json({
+    //     polls: "no poll available",
+    // });
 };
 
 // display created polls
