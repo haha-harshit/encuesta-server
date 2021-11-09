@@ -20,6 +20,13 @@ const userSchema = new moongoose.Schema(
             type: String,
             required: true,
         },
+
+        polls: [
+            {
+                type: moongoose.Schema.Types.ObjectId,
+                ref: "Poll",
+            },
+        ],
     },
     {
         timestamps: true,

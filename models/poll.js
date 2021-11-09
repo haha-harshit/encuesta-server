@@ -1,23 +1,21 @@
-const moongoose = require("mongoose");
+const mongoose = require("mongoose");
 // const multer = require('multer');
 // const path = require('path');
 // const AVATAR_PATH = path.join('/uploads/users/avatars');
 
-const pollSchema = new moongoose.Schema(
+const pollSchema = new mongoose.Schema(
     {
         description: {
             type: String,
-            required: true,
+            // required: true,
         },
 
-        options: [
-            {
-                type: moongoose.Schema.Types.ObjectId,
-                ref: "Option",
-            },
-        ],
+        options: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Option",
+        },
         owner: {
-            type: moongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
     },
@@ -38,6 +36,6 @@ const pollSchema = new moongoose.Schema(
 // userSchema.statics.uploadAvatar = multer({storage: storage}).single('avatar');
 // userSchema.statics.avatarPath = AVATAR_PATH;
 
-const Poll = moongoose.model("Poll", pollSchema);
+const Poll = mongoose.model("Poll", pollSchema);
 
 module.exports = Poll;

@@ -4,7 +4,7 @@ const router = express.Router();
 // require middleware - fetchUser to check logged in? {logged in user only}
 const fetchUser = require("../../middlewares/fetchUser");
 
-const { body } = require("express-validator");
+// const { body } = require("express-validator");
 
 const pollController = require("../../controllers/api/poll");
 
@@ -18,14 +18,15 @@ router.get("/created-polls", fetchUser, pollController.createdPolls);
 router.get("/participated-polls", fetchUser, pollController.participatedPolls);
 
 //ROUTE 4: POST A POLL ***{POST}--> "api/poll/add-poll" LOGIN REQUIRED
-router.post(
-    "/add-poll",
-    [
-        body("description", "Enter a valid description").isLength({ min: 1 }),
-        body("option", "Enter a valid option").isLength({ min: 1 }),
-    ],
-    fetchUser,
-    pollController.addPoll
-);
+// router.post(
+//     "/add-poll",
+//     [
+//         body("description", "Enter a valid description"),
+//         body("option", "Enter a valid option"),
+//     ],
+//     fetchUser,
+//     pollController.addPoll
+// );
+router.post("/add-poll", fetchUser, pollController.addPoll);
 
 module.exports = router;

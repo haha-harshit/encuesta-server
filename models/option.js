@@ -5,9 +5,9 @@ const moongoose = require("mongoose");
 
 const optionSchema = new moongoose.Schema(
     {
-        description: {
-            type: String,
-            required: true,
+        o_description: {
+            type: Array,
+            // required: true,
         },
         count: {
             type: Number,
