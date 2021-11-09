@@ -152,7 +152,8 @@ module.exports.login_user = async (req, res) => {
                 };
                 const authtoken = jwt.sign(data, JWT_SECRET);
                 console.log("logged In success");
-                res.json({ authtoken });
+                // res.json({ authtoken });
+                return res.redirect("home");
             }
         }
     } catch (error) {
