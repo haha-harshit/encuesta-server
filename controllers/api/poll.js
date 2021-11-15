@@ -24,6 +24,11 @@ module.exports.participatedPolls = async (req, res) => {
     return res.json([]);
 };
 
+// ACCESS POLL FORM
+module.exports.pollForm = async (req, res) => {
+    return res.render("poll_form");
+};
+
 // create a poll
 module.exports.addPoll = async (req, res) => {
     try {
