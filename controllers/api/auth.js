@@ -12,6 +12,16 @@ var jwt = require("jsonwebtoken");
 // JWT_SECRET_key
 const JWT_SECRET = "Hahaisagoodboy@10";
 
+// signup page FORM
+module.exports.sign_up = async (req, res) => {
+    return res.render("sign_up");
+};
+
+// LOGIN PAGE FORM
+module.exports.log_in = async (req, res) => {
+    return res.render("log_in");
+};
+
 // create user
 module.exports.create_user = async (req, res) => {
     const errors = validationResult(req);
@@ -114,7 +124,7 @@ module.exports.create_user = async (req, res) => {
 };
 
 // LOGIN-USER
-module.exports.login_user = async (req, res) => {
+module.exports.create_session = async (req, res) => {
     // if errors, return bad request and errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -153,7 +163,7 @@ module.exports.login_user = async (req, res) => {
                 const authtoken = jwt.sign(data, JWT_SECRET);
                 console.log("logged In success");
                 // res.json({ authtoken });
-                return res.redirect("home");
+                return res.render("home");
             }
         }
     } catch (error) {
@@ -161,6 +171,11 @@ module.exports.login_user = async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 };
+
+// post createSession
+// module.exports.create_session = async (req, res) => {
+//     return res.redirect("/");
+// };
 
 // get user-details of logged_in user
 module.exports.get_user = async (req, res) => {

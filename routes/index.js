@@ -8,9 +8,11 @@ const fetchUser = require("../middlewares/fetchUser");
 
 const mainController = require("../controllers/index");
 
-router.get("/", mainController.main);
+router.get("/", mainController.home);
 
 router.get("/sign-up", mainController.sign_up);
+
+router.get("/log-in", mainController.log_in);
 
 //ROUTE 1: CREATE_USER -noLoginRequired *** {POST}->"create-user" ***
 router.post(
@@ -34,7 +36,7 @@ router.post(
     //     body("password", "Password cannot be blank").exists(),
     // ],
     // authController.login_user
-    mainController.login_user
+    mainController.create_session
 );
 
 // ROUTE 3: GET_LOGGED_IN_USER_DETAILS -LoginRequired *** {POST}->"api/auth/get-user" ***

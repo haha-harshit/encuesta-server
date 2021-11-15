@@ -14,16 +14,27 @@ const JWT_SECRET = "Hahaisagoodboy@10";
 
 module.exports.main = function (req, res) {
     return res.render("main", {
+        title: "ENCUESTA-MAIN",
+    });
+};
+
+module.exports.home = function (req, res) {
+    return res.render("home", {
         title: "ENCUESTA-HOME",
     });
 };
 
-// signup page
+// signup page FORM
 module.exports.sign_up = async (req, res) => {
     return res.render("sign_up");
 };
 
-// create user
+// LOGIN PAGE FORM
+module.exports.log_in = async (req, res) => {
+    return res.render("log_in");
+};
+
+// create user - SIGN UP
 module.exports.create_user = async (req, res) => {
     const errors = validationResult(req);
 
@@ -78,8 +89,8 @@ module.exports.create_user = async (req, res) => {
     }
 };
 
-// LOGIN-USER
-module.exports.login_user = async (req, res) => {
+// LOGIN-USER - create session
+module.exports.create_session = async (req, res) => {
     // if errors, return bad request and errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

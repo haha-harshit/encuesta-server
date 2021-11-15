@@ -1,4 +1,4 @@
-<form action="/create-user" method="POST" id="signup-form">
+<form action="/api/auth/create-user" method="POST" id="signup-form">
     <input type="text" id="name" , placeholder="Name" , name="name" required />
     <input
         type="email"
@@ -20,3 +20,11 @@
 
     <button type="submit" id="login-btn">SIGN UP</button>
 </form>
+
+<!-- <%- include('log_in') %> -->
+<p>
+    Already a member?
+
+    <br />
+    <a href="/log-in">LOGIN HERE</a>
+</p>
