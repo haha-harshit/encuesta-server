@@ -33,6 +33,7 @@ router.post(
         body("email", "Enter a valid E-Mail").isEmail(),
         body("password", "Password cannot be blank").exists(),
     ],
+    passport.authenticate("local", { failureRedirect: "/log-in" }),
     authController.create_session
 );
 

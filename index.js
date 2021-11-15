@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // set route
-app.use("/", require("./routes/index"));
+// app.use("/", require("./routes/index"));
 
 // routing to API
 app.use("/api", require("./routes/api/index"));
