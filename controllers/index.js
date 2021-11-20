@@ -90,6 +90,12 @@ module.exports.create_user = async (req, res) => {
 };
 
 // LOGIN-USER - create session
+
+// module.exports.create_session = async(req, res) => {
+//     return res.render('home');
+// }
+
+// manual
 module.exports.create_session = async (req, res) => {
     // if errors, return bad request and errors
     const errors = validationResult(req);

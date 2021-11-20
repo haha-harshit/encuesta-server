@@ -41,4 +41,9 @@ passport.deserializeUser(function (id, done) {
     });
 });
 
+// check if user is authenticated
+passport.checkAuthentication = function(req, res, next){
+    
+}
+
 module.exports = passport;

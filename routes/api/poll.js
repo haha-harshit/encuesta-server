@@ -32,6 +32,6 @@ router.get("/participated-polls", fetchUser, pollController.participatedPolls);
 router.get("/add-poll", pollController.pollForm);
 
 // ROUTE FOR CREATING POLL {POST}
-router.post("/add-poll", fetchUser, pollController.addPoll);
+router.post("/add-poll", pollController.addPoll);
 
 module.exports = router;
