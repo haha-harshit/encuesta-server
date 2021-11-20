@@ -7,6 +7,7 @@ passport.use(
     new LocalStrategy(
         {
             usernamefield: "email",
+            passReqToCallback: true,
         },
         function (req, email, password, done) {
             User.findOne({ email: email }, function (err, user) {
@@ -49,7 +50,7 @@ passport.checkAuthentication = function (req, res, next) {
     }
 
     // if not signed in
-    return res.redirect("/api/auth/log-in");
+    return res.redirect("back");
 };
 
 passport.setAuthenticatedUser = function (req, res, next) {

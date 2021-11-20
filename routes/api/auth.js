@@ -33,7 +33,7 @@ router.post(
         body("email", "Enter a valid E-Mail").isEmail(),
         body("password", "Password cannot be blank").exists(),
     ],
-    passport.authenticate("local", { failureRedirect: "/api/auth/sign-up" }),
+    // passport.authenticate("local", { failureRedirect: "/api/auth/log-in" }),
     authController.create_session
 );
 
