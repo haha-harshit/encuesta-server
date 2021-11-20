@@ -41,7 +41,8 @@ router.post(
 // router.post('/create-session', )
 
 // ROUTE 4: GET_LOGGED_IN_USER_DETAILS -LoginRequired *** {POST}->"api/auth/get-user" ***
-router.post("/get-user", fetchUser, authController.get_user);
+router.post("/get-user", authController.get_user);
+// router.post("/get-user", fetchUser, authController.get_user);
 
 // export route
 module.exports = router;

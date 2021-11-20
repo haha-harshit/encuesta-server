@@ -1,14 +1,14 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
 const User = require("../models/user");
 
 passport.use(
+    "local",
     new LocalStrategy(
         {
             usernamefield: "email",
         },
-        function (email, password, done) {
+        function (req, email, password, done) {
             User.findOne({ email: email }, function (err, user) {
                 if (err) {
                     console.log("Error in finding user", err);
@@ -44,7 +44,7 @@ passport.deserializeUser(function (id, done) {
 // check if user is authenticated
 passport.checkAuthentication = function (req, res, next) {
     // if user signed in, pass the request on next function
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated) {
         return next();
     }
 
@@ -52,10 +52,11 @@ passport.checkAuthentication = function (req, res, next) {
     return res.redirect("/api/auth/log-in");
 };
 
-passport.setAuthenticatedUser = function (req, res) {
-    if (req.isAuthenticated()) {
+passport.setAuthenticatedUser = function (req, res, next) {
+    if (req.isAuthenticated) {
         res.locals.user = req.user;
     }
+    next();
 };
 
 module.exports = passport;

@@ -62,10 +62,10 @@ module.exports.create_user = async (req, res) => {
                         id: user.id,
                     },
                 };
-                const authtoken = jwt.sign(data, JWT_SECRET);
+                // const authtoken = jwt.sign(data, JWT_SECRET);
                 // console.log(jwtData);
                 // console.log(data.user);
-                res.json({ authtoken });
+                // res.json({ authtoken });
             } catch (err) {
                 // console.log("Error in creating account");
                 console.log(err);
@@ -160,7 +160,8 @@ module.exports.create_session = async (req, res) => {
                         id: user.id,
                     },
                 };
-                const authtoken = jwt.sign(data, JWT_SECRET);
+                res.cookie("user_id", user.id);
+                // const authtoken = jwt.sign(data, JWT_SECRET);
                 console.log("logged In success");
                 // res.json({ authtoken });
                 return res.render("home");
@@ -174,7 +175,7 @@ module.exports.create_session = async (req, res) => {
 
 // post createSession
 // module.exports.create_session = async (req, res) => {
-//     return res.redirect("/");
+//     return console.log("create-session done");
 // };
 
 // get user-details of logged_in user
