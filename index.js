@@ -1,10 +1,10 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
-const app = express();
 const port = 8000;
+const cookieParser = require("cookie-parser");
 // const expressLayouts = require("express-ejs-layouts");
 // connect to db
 const db = require("./config/mongoose");
+const User = require("./models/user");
 
 // app.use(expressLayouts);
 
@@ -16,7 +16,25 @@ const passport = require("passport");
 
 const passportLocal = require("./config/passport-local-strategy");
 
-const User = require("./models/user");
+var MongoDBStore = require("connect-mongodb-session")(session);
+const app = express();
+var store = new MongoDBStore(
+    {
+        uri: "mongodb://localhost/encuesta_development",
+        databaseName: "encuesta_development",
+        // mongooseConnection: db,
+        // autoRemove: "disabled",
+    },
+    function (err) {
+        if (err) {
+            console.log(err, "error");
+        }
+    }
+);
+
+store.on("error", function (err) {
+    console.log(err);
+});
 
 // middleware-> json-body-parser
 app.use(express.json());
@@ -36,19 +54,7 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 // session config
-// app.use(
-//     session({
-//         name: "encuesta",
-//         // TODO change secret before depolyment in production mode
-//         secret: "blahsomething",
-//         saveUninitialized: false,
-//         resave: false,
-//         cookie: {
-//             maxAge: null,
-//         },
-//     })
-// );
-
+// mongoStore is used to store the session cookie in the db
 app.use(
     session({
         name: "encuesta",
@@ -58,6 +64,7 @@ app.use(
         cookie: {
             maxAge: null,
         },
+        store: store,
     })
 );
 
