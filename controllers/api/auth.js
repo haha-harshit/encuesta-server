@@ -12,13 +12,20 @@ var jwt = require("jsonwebtoken");
 // JWT_SECRET_key
 const JWT_SECRET = "Hahaisagoodboy@10";
 
+const passport = require("passport");
 // signup page FORM
 module.exports.sign_up = async (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect("/api");
+    }
     return res.render("sign_up");
 };
 
 // LOGIN PAGE FORM
 module.exports.log_in = async (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect("/api");
+    }
     return res.render("log_in");
 };
 
@@ -53,7 +60,7 @@ module.exports.create_user = async (req, res) => {
                 let user = await User.create({
                     name: req.body.name,
                     email: req.body.email,
-                    password: secPass,
+                    password: req.body.password,
                 });
                 console.log("Account created successfully!", user);
 
@@ -124,59 +131,60 @@ module.exports.create_user = async (req, res) => {
 };
 
 // LOGIN-USER
-module.exports.create_session = async (req, res) => {
-    // if errors, return bad request and errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+// module.exports.create_session = async (req, res) => {
+//     // if errors, return bad request and errors
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//         return res.status(400).json({ errors: errors.array() });
+//     }
 
-    const { email, password } = req.body;
-    try {
-        let user = await User.findOne({ email });
+//     const { email, password } = req.body;
+//     try {
+//         let user = await User.findOne({ email });
 
-        // if email not found in db while logging in
-        if (!user) {
-            return res.status(400).json("Invalid E-mail/Password");
-        }
+//         // if email not found in db while logging in
+//         if (!user) {
+//             return res.status(400).json("Invalid E-mail/Password");
+//         }
 
-        // if user exists in db
-        if (user) {
-            // compare the password hash in db with password entered, comparison is done internally in bcrypt
-            const passwordCompare = await bcrypt.compare(
-                password,
-                user.password
-            );
+//         // if user exists in db
+//         if (user) {
+//             // compare the password hash in db with password entered, comparison is done internally in bcrypt
+//             const passwordCompare = await bcrypt.compare(
+//                 password,
+//                 user.password
+//             );
 
-            // if password mismatch
-            if (!passwordCompare) {
-                return res.status(400).json("Invalid E-mail/Password");
-            }
+//             // if password mismatch
+//             if (!passwordCompare) {
+//                 return res.status(400).json("Invalid E-mail/Password");
+//             }
 
-            // if matched
-            if (passwordCompare) {
-                const data = {
-                    user: {
-                        id: user.id,
-                    },
-                };
-                res.cookie("user_id", user.id);
-                // const authtoken = jwt.sign(data, JWT_SECRET);
-                console.log("logged In success");
-                // res.json({ authtoken });
-                return res.render("home");
-            }
-        }
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).send("Internal Server Error");
-    }
-};
+//             // if matched
+//             if (passwordCompare) {
+//                 const data = {
+//                     user: {
+//                         id: user.id,
+//                     },
+//                 };
+//                 res.cookie("user_id", user.id);
+//                 // const authtoken = jwt.sign(data, JWT_SECRET);
+//                 console.log("logged In success");
+//                 // res.json({ authtoken });
+//                 return res.render("home");
+//             }
+//         }
+//     } catch (error) {
+//         console.log(error.message);
+//         res.status(500).send("Internal Server Error");
+//     }
+// };
 
 // post createSession
-// module.exports.create_session = async (req, res) => {
-//     return console.log("create-session done");
-// };
+module.exports.create_session = async function (req, res) {
+    console.log("create-session done");
+    return res.redirect("/api");
+};
 
 // get user-details of logged_in user
 module.exports.get_user = async (req, res) => {

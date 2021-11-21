@@ -28,11 +28,6 @@ app.use(cookieParser());
 // set route
 // app.use("/", require("./routes/index"));
 
-// routing to API
-app.use("/api", require("./routes/api/index"));
-app.use("/api/auth", require("./routes/api/auth"));
-app.use("/api/poll", require("./routes/api/poll"));
-
 // app.get("/", (req, res) => {
 //     return res.send("Home page");
 // });
@@ -41,10 +36,22 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 // session config
+// app.use(
+//     session({
+//         name: "encuesta",
+//         // TODO change secret before depolyment in production mode
+//         secret: "blahsomething",
+//         saveUninitialized: false,
+//         resave: false,
+//         cookie: {
+//             maxAge: null,
+//         },
+//     })
+// );
+
 app.use(
     session({
         name: "encuesta",
-        // TODO change secret before depolyment in production mode
         secret: "blahsomething",
         saveUninitialized: false,
         resave: false,
@@ -54,8 +61,16 @@ app.use(
     })
 );
 
+// initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+
+// routing to API
+app.use("/api", require("./routes/api/index"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/poll", require("./routes/api/poll"));
 
 app.listen(port, () => {
     console.log("Server is up and running");

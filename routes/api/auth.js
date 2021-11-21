@@ -27,13 +27,19 @@ router.post(
 );
 
 // ROUTE 2: LOGIN_USER -noLoginRequired *** {POST}->"api/auth/login-user" ***
+// router.post(
+//     "/create-session",
+//     [
+//         body("email", "Enter a valid E-Mail").isEmail(),
+//         body("password", "Password cannot be blank").exists(),
+//     ],
+//     passport.authenticate("local", { failureRedirect: "/api/auth/log-in" }),
+//     authController.create_session
+// );
+
 router.post(
     "/create-session",
-    [
-        body("email", "Enter a valid E-Mail").isEmail(),
-        body("password", "Password cannot be blank").exists(),
-    ],
-    // passport.authenticate("local", { failureRedirect: "/api/auth/log-in" }),
+    passport.authenticate("local", { failureRedirect: "/api/auth/log-in" }),
     authController.create_session
 );
 

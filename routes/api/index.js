@@ -5,7 +5,7 @@ const passport = require("passport");
 
 const homeController = require("../../controllers/api/index");
 
-router.get("/", homeController.home);
+router.get("/", passport.checkAuthentication, homeController.home);
 
 // export route
 module.exports = router;
