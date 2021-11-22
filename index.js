@@ -10,6 +10,9 @@ const cookieParser = require("cookie-parser");
 const db = require("./config/mongoose");
 const User = require("./models/user");
 
+// static files
+app.use(express.static("./assets"));
+
 // use expressLayouts
 app.use(expressLayouts);
 
