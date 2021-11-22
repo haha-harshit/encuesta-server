@@ -24,13 +24,13 @@ passport.use(
                 // if (user.password != password) {
                 //     console.log("Pass mismatch");
                 // }
-                console.log(password);
-                console.log(user.password);
+                // console.log(password);
+                // console.log(user.password);
                 // if (user.password != password) {
                 //     console.log("pass bhul gyi");
                 // }
-                console.log("enter here");
-                console.log(user);
+                // console.log("enter here");
+                // console.log(user);
                 return done(null, user);
             });
         }

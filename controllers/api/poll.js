@@ -26,7 +26,9 @@ module.exports.participatedPolls = async (req, res) => {
 
 // ACCESS POLL FORM
 module.exports.pollForm = async (req, res) => {
-    return res.render("poll_form");
+    return res.render("poll_form", {
+        title: "Encuesta | Poll Form",
+    });
 };
 
 // create a poll

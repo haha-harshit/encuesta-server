@@ -1,12 +1,19 @@
 const express = require("express");
 const port = 8000;
+
+// import express layouts
+const expressLayouts = require("express-ejs-layouts");
+
+const app = express();
 const cookieParser = require("cookie-parser");
-// const expressLayouts = require("express-ejs-layouts");
 // connect to db
 const db = require("./config/mongoose");
 const User = require("./models/user");
 
-// app.use(expressLayouts);
+// use expressLayouts
+app.use(expressLayouts);
+
+// app.set("layout", "./views/layout");
 
 // used for session cookie
 const session = require("express-session");
@@ -17,7 +24,6 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 
 var MongoDBStore = require("connect-mongodb-session")(session);
-const app = express();
 var store = new MongoDBStore(
     {
         uri: "mongodb://localhost/encuesta_development",

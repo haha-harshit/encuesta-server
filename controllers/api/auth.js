@@ -18,7 +18,9 @@ module.exports.sign_up = async (req, res) => {
     if (req.isAuthenticated()) {
         return res.redirect("/api");
     }
-    return res.render("sign_up");
+    return res.render("sign_up", {
+        title: "Encuesta | Sign Up",
+    });
 };
 
 // LOGIN PAGE FORM
@@ -26,7 +28,9 @@ module.exports.log_in = async (req, res) => {
     if (req.isAuthenticated()) {
         return res.redirect("/api");
     }
-    return res.render("log_in");
+    return res.render("log_in", {
+        title: "Encuesta | Log In",
+    });
 };
 
 // create user
