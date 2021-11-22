@@ -26,28 +26,22 @@ router.post(
     authController.create_user
 );
 
-// ROUTE 2: LOGIN_USER -noLoginRequired *** {POST}->"api/auth/login-user" ***
-// router.post(
-//     "/create-session",
-//     [
-//         body("email", "Enter a valid E-Mail").isEmail(),
-//         body("password", "Password cannot be blank").exists(),
-//     ],
-//     passport.authenticate("local", { failureRedirect: "/api/auth/log-in" }),
-//     authController.create_session
-// );
-
+// ROUTE 2: LOGIN_USER -noLoginRequired *** {POST}->"api/auth/create-session" ***
 router.post(
     "/create-session",
     passport.authenticate("local", { failureRedirect: "/api/auth/log-in" }),
     authController.create_session
 );
 
-// ROUTE 3: CREATE_SESSION -LoginRequired *** {POST}->"api/auth/createSession" ***
-// router.post('/create-session', )
+// ROUTE 3: DESTROY_SESSION -LoginRequired *** {POST}->"api/auth/destroy-session" ***
+router.get(
+    "/destroy-session",
+    passport.checkAuthentication,
+    authController.destroy_session
+);
 
 // ROUTE 4: GET_LOGGED_IN_USER_DETAILS -LoginRequired *** {POST}->"api/auth/get-user" ***
-router.post("/get-user", authController.get_user);
+// router.get("/get-user", authController.get_user);
 // router.post("/get-user", fetchUser, authController.get_user);
 
 // export route

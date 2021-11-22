@@ -1,13 +1,14 @@
 <header>
     Page Header
 
-    <!-- <ul>
+    <ul>
         <% if(locals.user){ %>
-            <li>
-                <%= user.name %>
-            </li>
-        <% }else{ %>
-
-        <% } %>
-    </ul> -->
+        <li>
+            <a href="/api/user/get-user"><%= user.name %></a>
+        </li>
+        <li>
+            <a href="/api/auth/destroy-session">Log Out</a>
+        </li>
+        <% }else{ %> <% } %>
+    </ul>
 </header>

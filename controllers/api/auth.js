@@ -184,20 +184,16 @@ module.exports.create_user = async (req, res) => {
 //     }
 // };
 
-// post createSession
+// post create-session
 module.exports.create_session = async function (req, res) {
     console.log("create-session done");
     return res.redirect("/api");
 };
 
-// get user-details of logged_in user
-module.exports.get_user = async (req, res) => {
-    try {
-        const userId = req.user.id;
-        const user = await User.findById(userId).select("-password");
-        res.send(user);
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).send("Internal Server Error");
-    }
+// destroy-session {LOG-OUT}
+module.exports.destroy_session = async function (req, res) {
+    req.logout();
+    res.clearCookie("encuesta");
+    console.log("Logged Out");
+    return res.redirect("/api/auth/log-in");
 };

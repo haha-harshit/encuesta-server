@@ -90,6 +90,7 @@ app.use(passport.setAuthenticatedUser);
 app.use("/api", require("./routes/api/index"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/poll", require("./routes/api/poll"));
+app.use("/api/user", require("./routes/api/user"));
 
 app.listen(port, () => {
     console.log("Server is up and running");
