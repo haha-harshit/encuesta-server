@@ -3,8 +3,11 @@ const port = 8000;
 
 // import express layouts
 const expressLayouts = require("express-ejs-layouts");
-
 const app = express();
+
+app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
+
 const cookieParser = require("cookie-parser");
 // connect to db
 const db = require("./config/mongoose");
