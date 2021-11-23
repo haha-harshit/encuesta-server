@@ -77,6 +77,7 @@ module.exports.create_user = async (req, res) => {
                 // console.log(jwtData);
                 // console.log(data.user);
                 // res.json({ authtoken });
+                return res.redirect("/api");
             } catch (err) {
                 // console.log("Error in creating account");
                 console.log(err);
