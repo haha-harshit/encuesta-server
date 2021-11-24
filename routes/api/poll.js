@@ -10,15 +10,20 @@ const pollController = require("../../controllers/api/poll");
 
 // ROUTE 1: DISPLAY ALL POLLS  *** {GET}->"api/poll/all-polls" *** LOGIN REQUIRED
 router.get("/all-polls", pollController.polls);
-// router.get("/all-polls", fetchUser, pollController.polls);
 
 // ROUTE 2: DISPLAY ALL CREATED POLLS  *** {GET}->"api/poll/created-polls" *** LOGIN REQUIRED
-router.get("/created-polls", pollController.createdPolls);
-// router.get("/created-polls", fetchUser, pollController.createdPolls);
+router.get(
+    "/created-polls",
+    passport.checkAuthentication,
+    pollController.createdPolls
+);
 
 // ROUTE 3: DISPLAY ALL PARTICIPATED POLLS  *** {GET}->"api/poll/participated-polls" *** LOGIN REQUIRED
-router.get("/participated-polls", pollController.participatedPolls);
-// router.get("/participated-polls", fetchUser, pollController.participatedPolls);
+router.get(
+    "/participated-polls",
+    passport.checkAuthentication,
+    pollController.participatedPolls
+);
 
 //ROUTE 4: POST A POLL ***{POST}--> "api/poll/add-poll" LOGIN REQUIRED
 // router.post(

@@ -1,0 +1,18 @@
+<p>
+    <span>Poll Description: </span>
+    <% for(a of user.polls){ %>
+        <ul>
+            <li><%= a.description %></li>
+        </ul>
+    <% } %>
+    <br>
+    <span>
+        Options:
+    </span>
+    <% for(a of user.polls){ %>
+        <ul>
+            <li><%= a.options.o_description %></li>
+        </ul>
+    <% } %>
+
+</p>

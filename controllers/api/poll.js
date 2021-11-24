@@ -16,7 +16,19 @@ module.exports.polls = async (req, res) => {
 
 // display created polls
 module.exports.createdPolls = async (req, res) => {
-    return res.json([]);
+    let user = await User.findById(req.user._id)
+        .populate("polls")
+        // .populate("options")
+        .populate({
+            path: "options",
+            populate: {
+                path: "o_description",
+            },
+        });
+    return res.render("my_poll", {
+        title: "Encuesta | My Polls",
+        user: user,
+    });
 };
 
 // display participated polls
@@ -52,7 +64,7 @@ module.exports.addPoll = async (req, res) => {
         //     owner: req.user.id,
         // });
 
-        let user = await User.findById(req.user.id);
+        let user = await User.findById(req.user.id).populate("polls");
         // console.log(user);
 
         let option = await Option.create({
@@ -78,9 +90,13 @@ module.exports.addPoll = async (req, res) => {
         // console.log(req.user.id);
 
         // const savedPoll = await poll.save();
-        res.json(poll);
+        // res.json(poll);
         console.log("Poll Description: ", poll.description);
         console.log("Poll Options: ", poll.options.o_description);
+        res.render("my_poll", {
+            title: "Encuesta | My Polls",
+            user: user,
+        });
     } catch (error) {
         console.log(error.message);
         res.status(500).send("Internal Server Error");
