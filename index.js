@@ -1,9 +1,12 @@
 const express = require("express");
 const port = 8000;
-
+const cors = require("cors");
 // import express layouts
 const expressLayouts = require("express-ejs-layouts");
 const app = express();
+
+// enable cors
+app.use(cors());
 
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);

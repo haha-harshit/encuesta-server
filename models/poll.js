@@ -18,6 +18,10 @@ const pollSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
+        points: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,
