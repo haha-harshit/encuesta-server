@@ -15,20 +15,41 @@ module.exports.polls = async (req, res) => {
 };
 
 // display created polls
-module.exports.createdPolls = async (req, res) => {
-    let user = await User.findById(req.user._id)
-        .populate("polls")
-        // .populate("options")
-        .populate({
-            path: "options",
-            populate: {
-                path: "o_description",
-            },
+// module.exports.createdPolls = async (req, res) => {
+//     let user = await User.findById(req.user._id)
+//         .populate("polls")
+//         // .populate("options")
+//         .populate({
+//             path: "options",
+//             populate: {
+//                 path: "o_description",
+//             },
+//         });
+//     return res.render("my_poll", {
+//         title: "Encuesta | My Polls",
+//         user: user,
+//     });
+// };
+
+module.exports.createdPolls = async function (req, res) {
+    try {
+        let user = await User.findById(req.user.id).populate("polls");
+        let options = await Option.find({}).populate("o_description");
+        let polls = await Poll.find({}).populate("options").populate("owner");
+
+        // let user = await User.findById(req.user.id).populate(polls);
+        // Option.find({});
+
+        return res.render("my_all_polls", {
+            title: "Encuesta | My Polls",
+            user: user,
+            options: options,
+            polls: polls,
         });
-    return res.render("my_poll", {
-        title: "Encuesta | My Polls",
-        user: user,
-    });
+    } catch (error) {
+        console.log("Error", error);
+        return;
+    }
 };
 
 // display participated polls
@@ -94,8 +115,9 @@ module.exports.addPoll = async (req, res) => {
         console.log("Poll Description: ", poll.description);
         console.log("Poll Options: ", poll.options.o_description);
         res.render("my_poll", {
-            title: "Encuesta | My Polls",
+            title: "Encuesta | Poll",
             user: user,
+            poll: poll,
         });
     } catch (error) {
         console.log(error.message);

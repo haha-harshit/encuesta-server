@@ -1,0 +1,69 @@
+<!-- <p><% for(poll of user.polls){ %> <%= poll.description %> <%}%></p> -->
+
+    
+<div class="container">
+    <% let poll_no = 1%>
+    
+<!-- <%=polls[0].options.o_description %> -->
+<br>
+<!-- <%for(a of options){%>
+    <%= a.o_description%>    
+<%}%> -->
+<!-- 
+<%for(b of polls[0].options.o_description){%>
+    <ul>
+        <li><%= b%></li>
+    </ul>    
+<%}%> -->
+<!-- <% for(a of polls){%>
+    <% for(b of a.options.o_description){%>
+        <ul>
+            <li>
+                <span><%= b%></span> -->
+                
+                    <!-- <input
+                    type="radio"
+                    name="s"
+                    id="s"
+                    value="<%= b%>"  
+                />
+                <%= b%>
+            </li>
+        </ul>
+    <%} %>
+<%} %> -->
+
+<hr>
+<hr>
+<br>
+
+    <% for(a of polls){%>    
+        
+        <p>
+            <ul>
+                <li>
+                    <h6>Poll <%= poll_no%></h6>
+                    <!-- <span><%= a.options.o_description%></span> -->
+
+                    <h5><%= a.description %></h5>
+
+                    <%for(b of a.options.o_description){%>
+                        
+                        <ul>
+                            <li>
+                                <blockquote>
+                                    <%= b%>
+                                </blockquote>
+                            </li>
+                        </ul>
+                    
+                    <%}%>
+
+                </li>
+            </ul>
+        </p>
+        <br>
+        <% poll_no = poll_no + 1%>
+        <%}%>
+
+    </div>

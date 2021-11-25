@@ -1,18 +1,57 @@
-<p>
-    <span>Poll Description: </span>
-    <% for(a of user.polls){ %>
-        <ul>
-            <li><%= a.description %></li>
-        </ul>
-    <% } %>
-    <br>
-    <span>
-        Options:
-    </span>
-    <% for(a of user.polls){ %>
-        <ul>
-            <li><%= a.options.o_description %></li>
-        </ul>
-    <% } %>
+<div class="container">
+    <h3><%= poll.description %></h3>
 
-</p>
+    <hr />
+    <hr />
+
+    <form id="vote-form">
+        <%for(a of poll.options.o_description){%>
+        <p>
+            <input
+                type="radio"
+                name="o_description"
+                id="<%= a%>"
+                value="<%= a%>"
+                style="position: unset; opacity: 1"
+            />
+            <label for="<%= a%>"><%= a%></label>
+        </p>
+        <%} %>
+        <!-- <p>
+            <input
+                type="radio"
+                name="startup"
+                id="unacademy"
+                value="Unacademy"
+                style="position: unset; opacity: 1"
+            />
+            <label for="unacademy">Unacademy</label>
+        </p>
+        <p>
+            <input
+                type="radio"
+                name="startup"
+                id="zerodha"
+                value="Zerodha"
+                style="position: unset; opacity: 1"
+            />
+            <label for="zerodha">Zerodha</label>
+        </p>
+        <p>
+            <input
+                type="radio"
+                name="startup"
+                id="razorpay"
+                value="Razorpay"
+                style="position: unset; opacity: 1"
+            />
+            <label for="razorpay">Razorpay</label>
+        </p> -->
+
+        <input type="submit" value="Vote" class="btn" />
+    </form>
+
+    <br /><br />
+
+    <div id="chartContainer" style="height: 300px; width: 100%"></div>
+</div>

@@ -1,33 +1,40 @@
-<h1>Create Your Poll here</h1>
+<div class="container">
+    <h3>Create Your Poll here</h3>
 
-<form action="/api/poll/add-poll" method="POST" id="poll-form">
-    <input
-        type="text"
-        id="description"
-        ,
-        placeholder="Poll Description"
-        ,
-        name="description"
-        required
-    />
-    <input
-        type="text"
-        id="o_description"
-        ,
-        placeholder="Option1"
-        ,
-        name="o_description"
-        required
-    />
-    <input
-        type="text"
-        id="o_description"
-        ,
-        placeholder="Option2"
-        ,
-        name="o_description"
-        required
-    />
+    <form action="/api/poll/add-poll" method="POST" id="poll-form">
+        <input
+            type="text"
+            id="description"
+            ,
+            placeholder="Poll Description"
+            ,
+            name="description"
+            required
+        />
+        <input
+            type="text"
+            id="o_description"
+            ,
+            placeholder="Option1"
+            ,
+            name="o_description"
+            required
+        />
+        <input
+            type="text"
+            id="o_description"
+            ,
+            placeholder="Option2"
+            ,
+            name="o_description"
+            required
+        />
 
-    <button type="submit" id="create-poll-btn">Create Poll</button>
-</form>
+        <input
+            type="submit"
+            id="create-poll-btn"
+            class="btn"
+            value="Create Poll"
+        />
+    </form>
+</div>
